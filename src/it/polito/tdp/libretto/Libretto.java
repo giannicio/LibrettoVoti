@@ -24,4 +24,23 @@ public class Libretto {
 		// voti in ordine di inserimento
 		voti.add(v);
 	}
+	
+	//public void StampaVoti(int voto) {}
+	//public String StampaVoti2(int voto) {}
+	/**
+	 * 
+	 * @param punti punteggio da ricerca
+	 * @return lista di {@link Voto} aventi 
+	 */
+	public List<Voto> cercaVoti(int punti) {
+		
+		List<Voto> result = new ArrayList<Voto>();
+		for(Voto v: this.voti) {
+			if(v.getPunti() == punti) {
+				result.add(v);
+			}
+		}
+		return result ;
+	}
+	// metodo migliore perchè non devo Sistem.stampare niente, ma devo gestire l'interfaccia grafica
 }
