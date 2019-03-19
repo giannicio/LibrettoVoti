@@ -3,7 +3,7 @@ package it.polito.tdp.libretto;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
+// guardare video lezione o usare git per vedere varie versioni del file
 public class Libretto {
 	
 	// ci metto una lista di oggetti voto
@@ -53,17 +53,27 @@ public class Libretto {
 	 * @return il {@link Voto} corrispondente, oppure {@code null}
 	 */
 	public Voto cercaEsame(String nomeEsame) {
-		for(Voto v: this.voti ) {
-//			if(v.getCorso() == nomeEsame) {
-//				return v;
-//			}
-			if(v.getCorso().equals(nomeEsame)) {
-				return v;
-			}
-		}
-		return null;
+		Voto voto = new Voto(0, nomeEsame, null);
+		int pos = this.voti.indexOf(voto);
+			if(pos == -1)
+				return null;else
+					return this.voti.get(pos);
 	}
-
-	
-	
+	/**
+	 * Dato un {@link Voto}, determina se esiste già un voto con uguale corso e uguale punteggio
+	 * @param v
+	 * @return {@code true}, se ha trovato un corso e punteggio uguale, 
+	 * {@false}, se non ha trovato il corso o lo ha trovato ma on voto diverso
+	 */
+	public boolean esisteGiaVoto(Voto v) {
+		int pos =this.voti.indexOf(v);
+			if (pos == -1)
+				return false;
+			else {
+				if (v.getPunti() == this.voti.get(pos).getPunti())
+					return true;
+				else
+					return false;
+			}
+	}
 }

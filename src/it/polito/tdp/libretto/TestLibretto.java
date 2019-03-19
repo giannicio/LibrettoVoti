@@ -23,12 +23,13 @@ public class TestLibretto {
 		libr.add(new Voto(27, "Programmazione a oggetti", LocalDate.of(2017, 1, 16)));
 		
 		List <Voto> venticinque = libr.cercaVoti(25);
-		System.out.println(venticinque);
-		
-		Voto a1 = libr.cercaEsame("Analisi I");
-		Voto a2 = libr.cercaEsame("Economia");
 		Voto a3 = libr.cercaEsame("Analisi I");
-		System.out.println(a2);
+		
+		// format si usa quando metti i %d %s ecc.
+		Voto giusto = new Voto(18,"Geometria", LocalDate.now());
+		Voto sbagliato = new Voto(28, "Geometria", LocalDate.now());
+		System.out.format("Il voto %s è %s\n", giusto.toString(), libr.esisteGiaVoto(giusto));
+		System.out.format("Il voto %s è %s\n", giusto.toString(), libr.esisteGiaVoto(sbagliato));
 	}
 
 }
