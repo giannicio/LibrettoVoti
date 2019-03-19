@@ -18,15 +18,23 @@ public class Libretto {
 	/**
 	 * Aggiunge yn nuovo voto al libretto
 	 * @param v il {@link Voto} da aggiungere
+	 * @return {@code true}
 	 */
 	
-	public void add(Voto v) {
+	public boolean add(Voto v) {
+		if (!this.esisteGiaVoto(v) && !this.votoConflitto(v)) {
+			voti.add(v);
+			return true;
+		}
+		else {
+			return false;
+		}
 		// voti in ordine di inserimento
-		voti.add(v);
 	}
 	
 	//public void StampaVoti(int voto) {}
 	//public String StampaVoti2(int voto) {}
+	
 	/**
 	 * Seleziona il sottoinsieme di voti che hanno il voto indicato
 	 * @param punti punteggio da ricerca
@@ -66,14 +74,25 @@ public class Libretto {
 	 * {@false}, se non ha trovato il corso o lo ha trovato ma on voto diverso
 	 */
 	public boolean esisteGiaVoto(Voto v) {
-		int pos =this.voti.indexOf(v);
+		int pos = this.voti.indexOf(v);
 			if (pos == -1)
 				return false;
 			else {
-				if (v.getPunti() == this.voti.get(pos).getPunti())
-					return true;
-				else
-					return false;
+				return (v.getPunti() == this.voti.get(pos).getPunti());
 			}
 	}
+	
+	/**
+	 * 
+	 * @param v
+	 * @return
+	 */
+	public boolean votoConflitto(Voto v) {
+		int pos = this.voti.indexOf(v);
+		if (pos == -1)
+			return false;
+		else {
+			return (v.getPunti() != this.voti.get(pos).getPunti());
+	}
+}
 }
